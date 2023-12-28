@@ -14,14 +14,11 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             return redirect('/dashboard');
-        } else {
-            $errorMessage = 'Credenciais inválidas.';
-            return redirect('/')->withErrors([$errorMessage]);
         }
+        $errorMessage = 'Credenciais inválidas.';
+        return redirect('/')->withErrors([$errorMessage]);
     }
     public function registrar(Request $request)
     {
@@ -40,10 +37,9 @@ class AuthController extends Controller
                     return redirect('/dashboard');
                 }
             }
-        } else {
-            $errorMessage = 'Email já utilizado, por favor utilize outro.';
-            return redirect('/')->withErrors([$errorMessage]);
         }
+        $errorMessage = 'Email já utilizado, por favor utilize outro.';
+        return redirect('/')->withErrors([$errorMessage]);
     }
     public function logout()
     {

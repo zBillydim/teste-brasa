@@ -12,10 +12,22 @@ class Mensagem extends Model
     protected $table = 'mensagens';
 
     protected $fillable = [
-        'professor_id', 'nome_aluno', 'data_envio', 'status', 'mensagem',
+        'professor_id',
+        'nome_aluno',
+        'nascimento',
+        'whatsapp',
+        'cidade',
+        'estado',
+        'mensagem',
     ];
 
-    protected $dates = ['data_envio'];
+    const CREATED_AT = 'CREATED_AT';
+    const UPDATED_AT = 'UPDATED_AT';
+    protected $guarded = [];
+    protected $casts = [
+        'CREATED_AT' => 'datetime:Y-m-d H:i:s',
+        'UPDATED_AT' => 'datetime:Y-m-d H:i:s',
+    ];
 
     public function professor()
     {

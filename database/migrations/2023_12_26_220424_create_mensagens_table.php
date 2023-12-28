@@ -11,12 +11,17 @@ class CreateMensagensTable extends Migration
         Schema::create('mensagens', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('professor_id');
-            $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
             $table->string('nome_aluno');
-            $table->timestamp('data_envio')->useCurrent();
-            $table->enum('status', ['respondido', 'pendente'])->default('pendente');
+            $table->date('nascimento');
+            $table->string('whatsapp', 50);
+            $table->string('cidade', 50);
+            $table->string('estado', 50);
             $table->text('mensagem');
             $table->timestamps();
+        });
+
+        Schema::table('mensagens', function (Blueprint $table) {
+            $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
         });
     }
 

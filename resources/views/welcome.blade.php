@@ -75,6 +75,7 @@
     <div class="btn-container">
         <button onclick="toggleForm('loginForm')" class="btn btn-primary me-3">Login</button>
         <button onclick="toggleForm('registroForm')" class="btn btn-success">Registro</button>
+        <a href={{ route('nova_mensagem') }}  style="text-decoration: none; color: black;"><button class="btn btn-success">Nova mensagem</button></a>
     </div>
     
     <form method="POST" action="{{ route('login') }}" id="loginForm" class="active">
@@ -84,7 +85,7 @@
             <input id="emailLogin" type="email" name="email" value="{{ old('email') }}" required autofocus class="form-control" placeholder="E-mail">
         </div>
         <div class="mb-3">
-            <input id="senhaLogin" type="password" name="senha" value="{{ old('senha') }}" required class="form-control" placeholder="Senha">
+            <input id="senhaLogin" type="password" name="password" value="{{ old('password') }}" required class="form-control" placeholder="Senha">
         </div>
         <button type="submit" class="btn btn-primary btn-block">Entrar</button>
     </form>

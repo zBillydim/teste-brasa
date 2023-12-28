@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfessorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 /* INICIO ROTAS PUBLICAS */
 
 Route::get('/', [ProfessorController::class, 'index'])->name('home');
@@ -24,10 +25,17 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /* FIM ROTAS PUBLICAS */
 
-
+/* INICIO ROTAS PRIVADAS */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/mensagem/{id}/edit', [MensagemController::class, 'edit'])->name('mensagem.edit');
-    Route::delete('/mensagem/{id}', [MensagemController::class, 'destroy'])->name('mensagem.destroy');
+    Route::get('/dashboard', [MensagemController::class, 'dashboard'])->name('dashboard');
+    Route::get('/mensagens', [MensagemController::class, 'index'])->name('mensagens.index');
+    Route::get('/mensagens/nova', [MensagemController::class, 'create'])->name('nova_mensagem');
+    Route::post('/create', [MensagemController::class, 'store'])->name('salvar_mensagem');
+    Route::get('/mensagens/{id}', [MensagemController::class, 'show'])->name('ver_mensagem');
+    Route::get('/mensagens/{id}/editar', [MensagemController::class, 'edit'])->name('editar_mensagem');
+    Route::put('/mensagens/{id}', [MensagemController::class, 'update'])->name('atualizar_mensagem');
+    Route::delete('/mensagens/{id}', [MensagemController::class, 'destroy'])->name('excluir_mensagem');
 });
+
+/* FIM ROTAS PRIVADAS */
