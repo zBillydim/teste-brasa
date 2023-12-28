@@ -76,7 +76,7 @@
                     <td>{{ $mensagem->mensagem }}</td>
                     <td>
                         <a href="{{ route('ver_mensagem', $mensagem->id) }}">Ver</a>
-                        <a href="{{ route('editar_mensagem', $mensagem->id) }}">Editar</a>
+                        <a href="{{ route('status_mensagem', $mensagem->id) }}">Marcar como respondida</a>
                         <form action="{{ route('excluir_mensagem', $mensagem->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')

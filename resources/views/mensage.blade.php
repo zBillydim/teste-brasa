@@ -36,26 +36,46 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .btn-reply {
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .btn-reply:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-
     <h1>Detalhes da Mensagem</h1>
 
     <div class="message-details">
-      @isset($mensagem)
-        <p><strong>ID:</strong> {{ $mensagem->id }}</p>
-        <p><strong>Professor ID:</strong> {{ $mensagem->professor_id }}</p>
-        <p><strong>Nome do Aluno:</strong> {{ $mensagem->nome_aluno }}</p>
-        <p><strong>Data de Envio:</strong> {{ $mensagem->data_envio }}</p>
-        <p><strong>Status:</strong> {{ $mensagem->status }}</p>
-        <p><strong>Mensagem:</strong> {{ $mensagem->mensagem }}</p>
-      @else
-        <p><strong>MENSAGEM INVÁLIDA</strong></p>
-      @endisset
+        @isset($mensagem)
+            <p><strong>ID:</strong> {{ $mensagem->id }}</p>
+            <p><strong>Professor ID:</strong> {{ $mensagem->professor_id }}</p>
+            <p><strong>Nome do Aluno:</strong> {{ $mensagem->nome_aluno }}</p>
+            <p><strong>Data de Envio:</strong> {{ $mensagem->data_envio }}</p>
+            <p><strong>Status:</strong> {{ $mensagem->status }}</p>
+            <p><strong>Mensagem:</strong> {{ $mensagem->mensagem }}</p>
+        @else
+            <p><strong>MENSAGEM INVÁLIDA</strong></p>
+        @endisset
     </div>
 
-    <a href="{{ route('dashboard') }}" style="text-decoration: none; color: #fff; background-color: #1E90FF; padding: 8px 12px; border-radius: 5px; margin-top: 20px;">Voltar para Lista de Mensagens</a>
+    <div class="form-container">
+        <form action="{{ route('responder_mensagem', $mensagem->id) }}" method="POST">
+            @csrf
+            <textarea id="resposta" name="resposta" class="form-control" required></textarea>
+            <button type="submit" class="btn-submit">Enviar Resposta</button>
+        </form>
+    </div>
+
+    <a href="{{ route('dashboard') }}" style="text-decoration: none; color: #fff; background-color: #1E90FF; padding: 8px 12px; border-radius: 5px; margin-top: 20px; display: block; width: fit-content;">Voltar para Lista de Mensagens</a>
 
 </body>
 </html>

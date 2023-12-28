@@ -79,6 +79,8 @@
 
             <button type="submit" class="btn-submit">Enviar Mensagem</button>
         </form>
+        <br>
+        <a href="/" class="btn-submit" style="border: none; text-decoration: none;cursor: pointer;">Voltar</a>
     </div>
 </body>
 </html>

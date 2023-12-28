@@ -34,6 +34,23 @@ class MensagemController extends Controller
         return view('dashboard', compact('mensagens'));
     }
 
+    public function status($id = 0)
+    {
+        if ($id > 0) {
+            Mensagem::where('id', $id)
+                ->update([
+                    'status' => 'respondida'
+                ]);
+            return view('dashboard');
+        }
+        return response()->json(['error' => 'Mensagem inválida']);
+    }
+
+    public function responder($id)
+    {
+        $mensagem = Mensagem::findOrFail($id);
+        return view('responder', ['mensagem' => $mensagem]);
+    }
     public function store(Request $request)
     {
         $request->validate([

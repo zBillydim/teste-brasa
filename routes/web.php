@@ -33,8 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mensagens/nova', [MensagemController::class, 'create'])->name('nova_mensagem');
     Route::post('/create', [MensagemController::class, 'store'])->name('salvar_mensagem');
     Route::get('/mensagens/{id}', [MensagemController::class, 'show'])->name('ver_mensagem');
+    Route::get('/mensagens/{id}/responder', [MensagemController::class, 'responder'])->name('responder_mensagem');
+    Route::get('/mensagens/status', [MensagemController::class, 'status'])->name('status_mensagem');
     Route::get('/mensagens/{id}/editar', [MensagemController::class, 'edit'])->name('editar_mensagem');
-    Route::put('/mensagens/{id}', [MensagemController::class, 'update'])->name('atualizar_mensagem');
     Route::delete('/mensagens/{id}', [MensagemController::class, 'destroy'])->name('excluir_mensagem');
 });
 
